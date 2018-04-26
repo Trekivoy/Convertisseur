@@ -42,33 +42,53 @@ int binaireToDecimale(char binaire[]){
     }
     return nombre;
 }
-int adapteurProduit(int produit,base){
-    if(produit>9){
-
+int binaireTo(char binaire[]){
+    int i;
+    int nombre =0;
+    int taille = str_len(binaire);
+    for(i=0;i<taille;i++){
+        if(binaire[i]=='1'){
+            nombre+=pow(2,taille-i-1);
+        }
     }
+    return nombre;
 }
-int decimaleTo(int nombre, char base[]){
+char adapteurProduit(int produit,int base){
+    char converti=48;
+    int i;
+    if(produit>0&&produit<10){
+        for(i=0;i<=produit;i++){
+            if(i==produit){
+                converti+=i;
+            }
+        }
+    }else if(produit>9&&produit<base){
+        converti = 65;
+        for(i=0;i<=produit-10;i++){
+            if(i==produit-10){
+                converti+=i;
+            }
+        }
+    }
+    return converti;
+}
+int decimaleTo(int nombre, char hexa[],int base){
     int i;
     int j;
     int k=0;
-    int base =16;
     int carre=1;
     int produit =1;
     for (i=0;nombre>carre*carre;i++){
         carre=pow(base,i);
-        printf("i vaut %d, carre vaut %d\n",i,carre);
+
     }
-    while(i!=0){
-        printf("nombre vaut %d et carre vaut %d\n",nombre, carre);
-        for(j=0;nombre>(j*carre);j++){
+    while(nombre!=0){
+        for(j=0;nombre>=(j*carre);j++){
             produit= j*carre;
-            printf("j vaut %d, produit vaut %d\n",j,produit);
         }
-        hexa[k]=j;
+        hexa[k]=adapteurProduit(j-1,base);
         nombre-=produit;
-        printf("carre = %d\n",carre);
         carre/=base;
-        i--;
         k++;
     }
     hexa[k]='\0';
@@ -86,10 +106,9 @@ int main()
 //    decimaleToBinaire(nombre,binaire);
 //    printf("Le voici en binaire %s\n",binaire);
 //    printf("le voici en decimale %d",binaireToDecimale(binaire));
-    decimaleToHexa(637,hexa);
+    int base =16;
+    decimaleTo(257,hexa,base);
     printf("%s",hexa);
-//    int carre;
-//    carre=pow(16,1);
-//    printf("carre vaut %d",carre);
+
     return 0;
 }
