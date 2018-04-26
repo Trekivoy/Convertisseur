@@ -16,6 +16,26 @@ int str_len(char *input){
     }
     return i;
 }
+char adapteurDecimale(int produit,int base){
+    char converti;
+    int i;
+    if(produit>0&&produit<10){
+        converti=48;
+        for(i=0;i<=produit;i++){
+            if(i==produit){
+                converti+=i;
+            }
+        }
+    }else if(produit>9&&produit<base){
+        converti = 65;
+        for(i=0;i<=produit-10;i++){
+            if(i==produit-10){
+                converti+=i;
+            }
+        }
+    }
+    return converti;
+}
 
 void decimaleToBinaire(int nombre,char binaire[]){
     int i;
@@ -42,35 +62,30 @@ int binaireToDecimale(char binaire[]){
     }
     return nombre;
 }
-int binaireTo(char binaire[]){
+int adaptateurChar(char c, int carre){
+    int chiffre = '0';
+    int lettre = 'A';
+    int i ;
+    if(c>chiffre&&c<57){
+        for(i=0;c!=chiffre+i;i++){
+        }
+    }else if(c>64&&c<91){
+        for(i=0;c!=lettre+i;i++){
+        }
+        i+=10;
+    }
+    return i*carre;
+}
+int toDecimale(char tableau[], int base){
+    int carre;
     int i;
     int nombre =0;
-    int taille = str_len(binaire);
+    int taille = str_len(tableau);
     for(i=0;i<taille;i++){
-        if(binaire[i]=='1'){
-            nombre+=pow(2,taille-i-1);
-        }
+        carre=pow(base,taille-1-i);
+        nombre+=adaptateurChar(tableau[i],carre);
     }
     return nombre;
-}
-char adapteurProduit(int produit,int base){
-    char converti=48;
-    int i;
-    if(produit>0&&produit<10){
-        for(i=0;i<=produit;i++){
-            if(i==produit){
-                converti+=i;
-            }
-        }
-    }else if(produit>9&&produit<base){
-        converti = 65;
-        for(i=0;i<=produit-10;i++){
-            if(i==produit-10){
-                converti+=i;
-            }
-        }
-    }
-    return converti;
 }
 int decimaleTo(int nombre, char tableau[],int base){
     int i;
@@ -89,7 +104,7 @@ int decimaleTo(int nombre, char tableau[],int base){
         for(j=0;nombre>=(j*carre);j++){
             produit= j*carre;
         }
-        tableau[k]=adapteurProduit(j-1,base);
+        tableau[k]=adapteurDecimale(j-1,base);
         nombre-=produit;
         carre/=base;
         k++;
@@ -110,9 +125,12 @@ int main()
 //    decimaleToBinaire(nombre,binaire);
 //    printf("Le voici en binaire %s\n",binaire);
 //    printf("le voici en decimale %d",binaireToDecimale(binaire));
-    int base =16;
-    decimaleTo(15,hexa,base);
-    printf("%s",hexa);
-
+    //int base =8;
+   // decimaleTo(5,hexa,base);
+    //printf("%s",hexa);
+    char test[100] ="FFFFFFF";
+   // printf("nombre vaut %d\n",);
+    nombre = toDecimale(test,16);
+    printf("%d",nombre);
     return 0;
 }
