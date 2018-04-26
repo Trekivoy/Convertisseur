@@ -78,8 +78,12 @@ int decimaleTo(int nombre, char tableau[],int base){
     int k=0;
     int carre=1;
     int produit =1;
-    for (i=0;nombre>base*carre;i++){
-        printf("%d\n",carre=pow(base,i));
+    if(nombre>base){
+        for (i=0;nombre>base*carre;i++){ // ne fonctionne pas quand nombre < base
+            carre=pow(base,i);
+        }
+    }else{
+        i=1;
     }
     while(i!=0){
         for(j=0;nombre>=(j*carre);j++){
@@ -107,7 +111,7 @@ int main()
 //    printf("Le voici en binaire %s\n",binaire);
 //    printf("le voici en decimale %d",binaireToDecimale(binaire));
     int base =16;
-    decimaleTo(100000000,hexa,base);
+    decimaleTo(15,hexa,base);
     printf("%s",hexa);
 
     return 0;
