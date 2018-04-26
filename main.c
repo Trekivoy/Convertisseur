@@ -64,9 +64,10 @@ int binaireToDecimale(char binaire[]){
 }
 int adaptateurChar(char c, int carre){
     int chiffre = '0';
+    printf("c vaut %d\n",c);
     int lettre = 'A';
     int i ;
-    if(c>chiffre&&c<57){
+    if(c>=chiffre&&c<57){
         for(i=0;c!=chiffre+i;i++){
         }
     }else if(c>64&&c<91){
@@ -128,9 +129,8 @@ int main()
     //int base =8;
    // decimaleTo(5,hexa,base);
     //printf("%s",hexa);
-    char test[100] ="FFFFFFF";
-   // printf("nombre vaut %d\n",);
-    nombre = toDecimale(test,16);
+    char test[100] ="101001001";
+    nombre = toDecimale(test,2);
     printf("%d",nombre);
     return 0;
 }
