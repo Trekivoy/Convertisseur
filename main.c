@@ -72,26 +72,26 @@ char adapteurProduit(int produit,int base){
     }
     return converti;
 }
-int decimaleTo(int nombre, char hexa[],int base){
+int decimaleTo(int nombre, char tableau[],int base){
     int i;
     int j;
     int k=0;
     int carre=1;
     int produit =1;
-    for (i=0;nombre>carre*carre;i++){
-        carre=pow(base,i);
-
+    for (i=0;nombre>base*carre;i++){
+        printf("%d\n",carre=pow(base,i));
     }
-    while(nombre!=0){
+    while(i!=0){
         for(j=0;nombre>=(j*carre);j++){
             produit= j*carre;
         }
-        hexa[k]=adapteurProduit(j-1,base);
+        tableau[k]=adapteurProduit(j-1,base);
         nombre-=produit;
         carre/=base;
         k++;
+        i--;
     }
-    hexa[k]='\0';
+    tableau[k]='\0';
 }
 int convertisseur();
 
@@ -107,7 +107,7 @@ int main()
 //    printf("Le voici en binaire %s\n",binaire);
 //    printf("le voici en decimale %d",binaireToDecimale(binaire));
     int base =16;
-    decimaleTo(257,hexa,base);
+    decimaleTo(100000000,hexa,base);
     printf("%s",hexa);
 
     return 0;
