@@ -108,7 +108,9 @@ int decimaleTo(int nombre, char tableau[],int base){
         nombre-=produit;
         carre/=base;
         k++;
+        printf("tableau[%d] vaut %d\n",i,tableau[i]);
         i--;
+
     }
     tableau[k]='\0';
 }
@@ -122,17 +124,32 @@ int menu(){
         int chiffre =0;
         int base = 0;
         switch(choix){
-            case 1:printf("Veuillez choisir un nombre a convertir\n");scanf("%d",&chiffre);printf("Voici votre nombre en binaire: \n%s\n",decimaleTo(chiffre,tableau,2));printf("Voici votre nombre en hexadecimale : \n%s",decimaleTo(chiffre,tableau,16));
+            case 1:printf("Veuillez choisir un nombre a convertir\n");
+            scanf("%d",&chiffre);
+            decimaleTo(chiffre,tableau,2);
+            printf("Voici votre nombre en binaire: \n%s\n",tableau);
+            decimaleTo(chiffre,tableau,16);
+            printf("Voici votre nombre en hexadecimale : \n%s",tableau);
             break;
-            case 2:printf("Veuillez écrire un nombre en binaire\n");scanf("%s",tableau);printf("Voici votre nombre : \n%d",toDecimale(tableau,2));
+            case 2:printf("Veuillez écrire un nombre en binaire\n");
+            scanf("%s",tableau);
+            printf("Voici votre nombre : \n%d",toDecimale(tableau,2));
             break;
-            case 3:printf("Veuillez écrire un nombre en hexadecimale\n");scanf("%s",tableau);printf("Voici votre nombre : \n%d",toDecimale(tableau,16));
+            case 3:printf("Veuillez écrire un nombre en hexadecimale\n");
+            scanf("%s",tableau);
+            printf("Voici votre nombre : \n%d",toDecimale(tableau,16));
             break;
-            case 4:printf("Veuillez choisir un nombre a convertir\n");scanf("%d",&chiffre);printf("Veuillez choisir une base\n");scanf("%d",&base);printf("Voici votre nombre : \n%d",toDecimale(tableau,base));
+            case 4:printf("Veuillez choisir un nombre a convertir\n");
+            scanf("%d",&chiffre);printf("Veuillez choisir une base\n");
+            scanf("%d",&base);
+            printf("Voici votre nombre : \n%d",toDecimale(tableau,base));
             break;
-            case 5:printf("Veuillez choisir une base \n");scanf("%d",&base);printf("Veuillez écrire un nombre en base %d\n",base);printf("Voici votre nombre : \n%d\n",toDecimale(tableau,16));
+            case 5:printf("Veuillez choisir une base \n");
+            scanf("%d",&base);
+            printf("Veuillez écrire un nombre en base %d\n",base);
+            printf("Voici votre nombre : \n%d\n",toDecimale(tableau,16));
             break;
-            default : printf("Veuillez entrer un nomber valide comme demander\n");
+            default : printf("Veuillez entrer un nombre valide comme demander\n");
         }
     }
 }
@@ -142,7 +159,7 @@ int main()
     //menu();
     int chiffre =55;
     char tableau[100];
-    printf("%s\n",decimaleTo(chiffre,tableau,2));
-    printf("%s",decimaleTo(chiffre,tableau,16));
+    decimaleTo(chiffre,tableau,2);
+    printf("%s\n",tableau);
     return 0;
 }
